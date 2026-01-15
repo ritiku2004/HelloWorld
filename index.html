@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Premium web solutions and glassmorphic designs for visionary businesses.">
     <title>Hello Word | Digital Experiences</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/professional-form.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
+
 <body>
 
     <!-- Header -->
@@ -17,17 +20,18 @@
             <a href="#" class="logo" aria-label="Hello Word Home">
                 <i class="fa-solid fa-cube" style="color: var(--color-primary);"></i> Hello Word
             </a>
-            
-            <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="mobile-nav">
+
+            <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle Navigation Menu" aria-expanded="false"
+                aria-controls="mobile-nav">
                 <i class="fa-solid fa-bars"></i>
             </button>
-            
+
             <ul class="nav-links" id="mobile-nav">
-                <li><a href="#services">Services</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
                 <li><a href="#testimonials">Stories</a></li>
                 <li><a href="#faq">FAQ</a></li>
-                <li><a href="#contact" class="btn btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.9rem;">Get Started</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -35,146 +39,208 @@
     <main>
         <!-- Hero Section -->
         <section class="hero" id="home" aria-labelledby="hero-title">
+            <canvas id="bg-canvas"></canvas>
             <div class="container text-center">
                 <div class="fade-up">
                     <span class="hero-tag">✨ Premium Web Solutions</span>
                     <h1 id="hero-title">Crafting Digital <br><span>Masterpieces</span></h1>
-                    <p style="margin: 0 auto 2rem auto;">We build stunning, high-performance websites for startups and visionary businesses. Elevate your brand with our premium glassmorphic designs.</p>
+                    <p style="margin: 0 auto 2rem auto;">We build stunning, high-performance websites for startups and
+                        visionary businesses. Elevate your brand with our premium glassmorphic designs.</p>
                     <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                        <a href="#contact" class="btn btn-primary">Start Project <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                        <a href="#contact" class="btn btn-primary">Start Project <i class="fa-solid fa-arrow-right"
+                                aria-hidden="true"></i></a>
                         <a href="#services" class="btn btn-glass">Explore Services</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Services Section -->
-        <section id="services" class="section-padding">
-            <div class="container">
-                <div class="text-center mb-8 fade-up">
-                    <h2>Our Expertise</h2>
-                    <p>Comprehensive solutions for the modern web.</p>
-                </div>
-                <div class="grid-3">
-                    <article class="glass-card fade-up">
-                        <div class="icon-box">
-                            <i class="fa-solid fa-layer-group"></i>
-                        </div>
-                        <h3>UI/UX Design</h3>
-                        <p>Interfaces that delight. We focus on usability, aesthetics, and interaction design to create engaging experiences.</p>
-                    </article>
-                    
-                    <article class="glass-card fade-up" style="transition-delay: 0.1s;">
-                        <div class="icon-box">
-                            <i class="fa-solid fa-code"></i>
-                        </div>
-                        <h3>Development</h3>
-                        <p>Clean, semantic code. We use the latest technologies to ensure your site is fast, secure, and scalable.</p>
-                    </article>
-                    
-                    <article class="glass-card fade-up" style="transition-delay: 0.2s;">
-                        <div class="icon-box">
-                            <i class="fa-solid fa-rocket"></i>
-                        </div>
-                        <h3>Growth & SEO</h3>
-                        <p>Data-driven strategies. We optimize your digital presence to rank higher and convert better.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
         <!-- About Section -->
         <section id="about" class="section-padding" style="overflow: hidden;">
+            <canvas id="about-canvas"></canvas>
             <div class="container">
                 <div class="split-layout">
                     <div class="fade-up">
-                        <img src="images/about-image.png" alt="Modern glass office interior showing team collaboration" class="about-img" width="600" height="400" loading="lazy">
+                        <img src="images/about-image.png" alt="Modern glass office interior showing team collaboration"
+                            class="about-img" width="600" height="400" loading="lazy">
                     </div>
                     <div class="fade-up">
                         <h2>We Are <span style="color: var(--color-primary);">Visionaries</span></h2>
-                        <p>Hello Word isn't just an agency; we are your digital partners. Born from a passion for design and technology, we aim to bridge the gap between complex code and beautiful user experiences.</p>
-                        <p>Address the needs of modern businesses with a style that stands out. No templates, no shortcuts—just pure craftsmanship.</p>
-                        <a href="#contact" class="btn btn-glass-dark" style="margin-top: 1rem;">Meet the Team <i class="fa-solid fa-arrow-right" style="margin-left: 0.5rem;" aria-hidden="true"></i></a>
+                        <p>Hello Word isn't just an agency; we are your digital partners. Born from a passion for design
+                            and technology, we aim to bridge the gap between complex code and beautiful user
+                            experiences.</p>
+                        <p>Address the needs of modern businesses with a style that stands out. No templates, no
+                            shortcuts—just pure craftsmanship.</p>
+                        <a href="#contact" class="btn btn-glass-dark" style="margin-top: 1rem;">Meet the Team <i
+                                class="fa-solid fa-arrow-right" style="margin-left: 0.5rem;" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Testimonials -->
-        <section id="testimonials" class="section-padding">
-            <div class="container">
-                <div class="text-center mb-8 fade-up">
-                    <h2>Success Stories</h2>
-                    <p>Don't just take our word for it.</p>
+        <!-- Water Drop Wrapper -->
+        <div id="water-wrapper" style="position: relative; overflow: hidden;">
+            <canvas id="water-canvas"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;"></canvas>
+
+            <!-- Services Section -->
+            <section id="services" class="section-padding" style="position: relative; z-index: 1;">
+                <div class="container">
+                    <div class="text-center mb-8 fade-up">
+                        <h2>Our Expertise</h2>
+                        <p>Comprehensive solutions for the modern web.</p>
+                    </div>
+                    <div class="grid-3">
+                        <article class="glass-card fade-up">
+                            <div class="icon-box">
+                                <i class="fa-solid fa-layer-group"></i>
+                            </div>
+                            <h3>UI/UX Design</h3>
+                            <p>Interfaces that delight. We focus on usability, aesthetics, and interaction design to
+                                create
+                                engaging experiences.</p>
+                        </article>
+
+                        <article class="glass-card fade-up" style="transition-delay: 0.1s;">
+                            <div class="icon-box">
+                                <i class="fa-solid fa-code"></i>
+                            </div>
+                            <h3>Development</h3>
+                            <p>Clean, semantic code. We use the latest technologies to ensure your site is fast, secure,
+                                and
+                                scalable.</p>
+                        </article>
+
+                        <article class="glass-card fade-up" style="transition-delay: 0.2s;">
+                            <div class="icon-box">
+                                <i class="fa-solid fa-rocket"></i>
+                            </div>
+                            <h3>Growth & SEO</h3>
+                            <p>Data-driven strategies. We optimize your digital presence to rank higher and convert
+                                better.
+                            </p>
+                        </article>
+                    </div>
                 </div>
-                <div class="grid-3">
-                    <div class="glass-card fade-up">
-                        <p>"The glassmorphic design they implemented completely revitalized our brand image. Our bounce rate dropped by 40%!"</p>
-                        <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-                            <div style="width: 40px; height: 40px; background: #ddd; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">SJ</div>
-                            <div>
-                                <h4 style="font-size: 0.95rem; margin-bottom: 0;">Sarah Jenkins</h4>
-                                <small style="color: var(--color-text-muted);">CTO, FinTech Co.</small>
+            </section>
+
+            <!-- Testimonials -->
+            <section id="testimonials" class="section-padding" style="position: relative; z-index: 1;">
+                <div class="container">
+                    <div class="text-center mb-8 fade-up">
+                        <h2>Success Stories</h2>
+                        <p>Don't just take our word for it.</p>
+                    </div>
+                    <div class="grid-3">
+                        <div class="glass-card fade-up">
+                            <p>"The glassmorphic design they implemented completely revitalized our brand image. Our
+                                bounce
+                                rate dropped by 40%!"</p>
+                            <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                                <div
+                                    style="width: 40px; height: 40px; background: #ddd; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                                    SJ</div>
+                                <div>
+                                    <h4 style="font-size: 0.95rem; margin-bottom: 0;">Sarah Jenkins</h4>
+                                    <small style="color: var(--color-text-muted);">CTO, FinTech Co.</small>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="glass-card fade-up" style="transition-delay: 0.1s;">
-                        <p>"Incredible attention to detail. The animations are smooth and the mobile experience is flawless."</p>
-                        <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-                            <div style="width: 40px; height: 40px; background: #ddd; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">MR</div>
-                            <div>
-                                <h4 style="font-size: 0.95rem; margin-bottom: 0;">Mark Roberts</h4>
-                                <small style="color: var(--color-text-muted);">Founder, StartUp Inc.</small>
+
+                        <div class="glass-card fade-up" style="transition-delay: 0.1s;">
+                            <p>"Incredible attention to detail. The animations are smooth and the mobile experience is
+                                flawless."</p>
+                            <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                                <div
+                                    style="width: 40px; height: 40px; background: #ddd; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                                    MR</div>
+                                <div>
+                                    <h4 style="font-size: 0.95rem; margin-bottom: 0;">Mark Roberts</h4>
+                                    <small style="color: var(--color-text-muted);">Founder, StartUp Inc.</small>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="glass-card fade-up" style="transition-delay: 0.2s;">
-                        <p>"They delivered exactly what we needed: a modern, high-speed website that looks premium."</p>
-                        <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-                            <div style="width: 40px; height: 40px; background: #ddd; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">DL</div>
-                            <div>
-                                <h4 style="font-size: 0.95rem; margin-bottom: 0;">David Lin</h4>
-                                <small style="color: var(--color-text-muted);">Director, Design Studio</small>
+
+                        <div class="glass-card fade-up" style="transition-delay: 0.2s;">
+                            <p>"Professional, timely, and creative. They took our vague ideas and turned them into a
+                                digital masterpiece."</p>
+                            <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                                <div
+                                    style="width: 40px; height: 40px; background: #ddd; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                                    AL</div>
+                                <div>
+                                    <h4 style="font-size: 0.95rem; margin-bottom: 0;">Alex Lee</h4>
+                                    <small style="color: var(--color-text-muted);">Marketing Dir, TechFlow</small>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
+
+
 
         <!-- FAQ Section -->
-        <section id="faq" class="section-padding">
-            <div class="container">
+        <section id="faq" class="section-padding" style="position: relative; overflow: hidden;">
+            <canvas id="faq-prisms-canvas"></canvas>
+            <div class="container" style="position: relative; z-index: 2;">
                 <div class="glass-card fade-up faq-container" style="padding: 2rem;">
                     <h2 class="text-center mb-8">Frequently Asked Questions</h2>
                     <div class="faq-list">
-                        <div class="faq-item">
+                        <!-- FAQ Item 1 -->
+                        <div class="faq-card" data-expanded="false">
                             <button class="faq-button" aria-expanded="false">
-                                How long does it take?
+                                <span>How long does the design process take?</span>
                                 <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
                             </button>
                             <div class="faq-answer">
-                                <p>Typically 2-4 weeks from design to launch, depending on complexity. We provide a detailed timeline during kickoff.</p>
+                                <p>Typically 2-4 weeks from design to launch, depending on complexity. We provide a
+                                    detailed timeline during the initial kickoff meeting.</p>
                             </div>
                         </div>
-                        <div class="faq-item">
+                        <!-- FAQ Item 2 -->
+                        <div class="faq-card" data-expanded="false">
                             <button class="faq-button" aria-expanded="false">
-                                Do you provide hosting?
+                                <span>Do you provide hosting and maintenance?</span>
                                 <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
                             </button>
                             <div class="faq-answer">
-                                <p>Yes, we offer fully managed hosting solutions with 99.9% uptime, SSL certification, and daily backups.</p>
+                                <p>Yes, we offer fully managed hosting solutions with 99.9% uptime, SSL certification,
+                                    and daily backups to keep your site secure.</p>
                             </div>
                         </div>
-                        <div class="faq-item">
+                        <!-- FAQ Item 3 -->
+                        <div class="faq-card" data-expanded="false">
                             <button class="faq-button" aria-expanded="false">
-                                Is it mobile-friendly?
+                                <span>Will my website be mobile-friendly?</span>
                                 <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
                             </button>
                             <div class="faq-answer">
-                                <p>Absolutely! Mobile responsiveness is our priority. Your site will look perfect on phones, tablets, and desktops.</p>
+                                <p>Absolutely! Mobile responsiveness is our priority. Your site will look perfect and
+                                    function flawlessly on phones, tablets, and desktops.</p>
+                            </div>
+                        </div>
+                        <!-- FAQ Item 4 -->
+                        <div class="faq-card" data-expanded="false">
+                            <button class="faq-button" aria-expanded="false">
+                                <span>Do you include SEO optimization?</span>
+                                <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Yes, all our websites are built with SEO best practices in mind, including proper
+                                    structure, meta tags, and fast loading speeds to help you rank better.</p>
+                            </div>
+                        </div>
+                        <!-- FAQ Item 5 -->
+                        <div class="faq-card" data-expanded="false">
+                            <button class="faq-button" aria-expanded="false">
+                                <span>Can I update the content myself?</span>
+                                <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>We can integrate a user-friendly Content Management System (CMS) that allows you to
+                                    easily update text and images without touching any code.</p>
                             </div>
                         </div>
                     </div>
@@ -183,54 +249,68 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="section-padding">
-            <div class="container">
+        <section id="contact" class="section-padding"
+            style="position: relative; overflow: hidden; background: transparent;">
+            <canvas id="contact-waves-canvas"></canvas>
+
+            <div class="container" style="position: relative; z-index: 2;">
                 <div class="grid-contact">
                     <div class="fade-up">
                         <h2>Let's Talk</h2>
-                        <p>Have a project in mind? Fill out the form or drop us an email to get started on your next big thing.</p>
-                        
+                        <p>Have a project in mind? Fill out the form or drop us an email to get started on your next big
+                            thing.</p>
+
                         <div style="margin-top: 2rem; display: flex; flex-direction: column; gap: 1.5rem;">
                             <div style="display: flex; gap: 1rem; align-items: center;">
-                                <div class="icon-box" style="margin-bottom: 0; width: 3rem; height: 3rem; font-size: 1.2rem;">
+                                <div class="icon-box"
+                                    style="margin-bottom: 0; width: 3rem; height: 3rem; font-size: 1.2rem;">
                                     <i class="fa-solid fa-envelope"></i>
                                 </div>
                                 <div>
                                     <h4 style="font-size: 1rem; margin-bottom: 0;">Email Us</h4>
-                                    <a href="mailto:hello@helloword.com" style="color: var(--color-text-muted);">hello@helloword.com</a>
+                                    <a href="mailto:hello@helloword.com"
+                                        style="color: var(--color-text-muted);">hello@helloword.com</a>
                                 </div>
                             </div>
                             <div style="display: flex; gap: 1rem; align-items: center;">
-                                <div class="icon-box" style="margin-bottom: 0; width: 3rem; height: 3rem; font-size: 1.2rem;">
+                                <div class="icon-box"
+                                    style="margin-bottom: 0; width: 3rem; height: 3rem; font-size: 1.2rem;">
                                     <i class="fa-solid fa-phone"></i>
                                 </div>
                                 <div>
                                     <h4 style="font-size: 1rem; margin-bottom: 0;">Call Us</h4>
-                                    <a href="tel:+15559876543" style="color: var(--color-text-muted);">+1 (555) 987-6543</a>
+                                    <a href="tel:+15559876543" style="color: var(--color-text-muted);">+1 (555)
+                                        987-6543</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="glass-card fade-up" style="padding: 2.5rem;">
+
+                    <div class="form-container professional-card fade-up">
                         <form id="contact-form" novalidate>
                             <div class="form-group">
-                                <label for="name" class="form-label">Full Name</label>
-                                <input type="text" id="name" name="name" class="form-input" required minlength="2">
+                                <label for="name" class="professional-label">Full Name</label>
+                                <input type="text" id="name" name="name" class="professional-input" required
+                                    placeholder="John Doe" minlength="2">
                             </div>
-                            
+
                             <div class="form-group">
-                                <label for="email" class="form-label">Email Address</label>
-                                <input type="email" id="email" name="email" class="form-input" required>
+                                <label for="email" class="professional-label">Email Address</label>
+                                <input type="email" id="email" name="email" class="professional-input" required
+                                    placeholder="john@example.com">
                             </div>
-                            
+
                             <div class="form-group">
-                                <label for="message" class="form-label">Project Details</label>
-                                <textarea id="message" name="message" class="form-input" rows="4" style="resize: vertical;" required minlength="10"></textarea>
+                                <label for="message" class="professional-label">Project Details</label>
+                                <textarea id="message" name="message" class="professional-input" rows="5"
+                                    style="resize: vertical;" required placeholder="Tell us about your project..."
+                                    minlength="10"></textarea>
                             </div>
-                            
-                            <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
-                            
+
+                            <button type="submit" class="btn-professional">
+                                Send Message
+                            </button>
+
                             <div id="form-feedback" class="feedback-msg"></div>
                         </form>
                     </div>
@@ -239,25 +319,72 @@
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; align-items: center;">
-                <a href="#" class="logo" style="font-size: 1.25rem;">
-                    <i class="fa-solid fa-cube" style="color: var(--color-primary);"></i> Hello Word
-                </a>
-                <div style="color: var(--color-text-muted); font-size: 0.9rem;">
-                    &copy; 2026 Hello Word. All rights reserved.
+    <!-- Footer (Full Width Prism) -->
+    <footer class="prism-footer">
+        <canvas id="footer-canvas"></canvas>
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="#" class="logo footer-logo">
+                        <i class="fa-solid fa-cube gradient-icon"></i> Hello Word
+                    </a>
+                    <p class="footer-bio">Crafting digital experiences that merge art with technology. We build the
+                        future of the web, one pixel at a time.</p>
                 </div>
-                <div style="display: flex; gap: 1.5rem;">
-                    <a href="#" aria-label="Twitter" style="color: var(--color-text-muted); font-size: 1.25rem;"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#" aria-label="Instagram" style="color: var(--color-text-muted); font-size: 1.25rem;"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" aria-label="LinkedIn" style="color: var(--color-text-muted); font-size: 1.25rem;"><i class="fa-brands fa-linkedin"></i></a>
+
+                <div class="footer-nav">
+                    <div class="nav-col">
+                        <h4>Explore</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#testimonials">Stories</a></li>
+                        </ul>
+                    </div>
+                    <div class="nav-col">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#faq">FAQ</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="#">Privacy</a></li>
+                            <li><a href="#">Terms</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-action">
+                    <h4>Connect</h4>
+                    <p>Reach out to us directly.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn" class="social-btn"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#" aria-label="WhatsApp" class="social-btn"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="mailto:hello@helloword.com" aria-label="Email" class="social-btn"><i
+                                class="fa-solid fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Hello Word. All rights reserved.</p>
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <a href="#" style="font-size: 0.85rem; color: var(--color-text-muted);">Privacy Policy</a>
+                    <button id="back-to-top" class="back-top-btn" aria-label="Back to top">
+                        Top <i class="fa-solid fa-arrow-up"></i>
+                    </button>
                 </div>
             </div>
         </div>
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/waves.js"></script>
+    <script src="js/antigravity.js"></script>
+    <script src="js/waterdrop.js"></script>
+    <script src="js/prism-footer.js"></script>
+    <script src="js/faq-prisms.js"></script>
+    <script src="js/contact-waves.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,125 @@
+/* Premium Glass Contact Form Styles (Compact) */
+
+.form-container.professional-card {
+    background: rgba(255, 255, 255, 0.1);
+    /* Frosted Glass */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.15);
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    /* Aggressively reduced from 3rem */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Add a subtle top highlight for 3D glass effect */
+.form-container.professional-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+}
+
+.professional-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    /* Reduced padding */
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+    color: #1e293b;
+    transition: all 0.3s ease;
+    margin-bottom: 0.25rem;
+}
+
+.professional-input:focus {
+    outline: none;
+    background: #ffffff;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+    transform: translateY(-1px);
+}
+
+.professional-input::placeholder {
+    color: #64748b;
+}
+
+.professional-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.25rem;
+    /* Reduced margin */
+    letter-spacing: 0.02em;
+}
+
+/* Gradient Button - Matches Theme perfectly */
+.btn-professional {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0.75rem 2rem;
+    /* Reduced height */
+    /* Theme Gradient: Indigo to Pink */
+    background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 0.75rem;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    position: relative;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+.btn-professional::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.2) 100%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.btn-professional:hover {
+    /* No movement, no shadow expansion - Static as requested */
+}
+
+.btn-professional:hover::after {
+    opacity: 1;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    .form-container.professional-card {
+        padding: 1.25rem;
+        /* Tighter fit on mobile */
+        backdrop-filter: blur(10px);
+        /* Save GPU */
+        -webkit-backdrop-filter: blur(10px);
+    }
+
+    .professional-input {
+        padding: 0.6rem 0.8rem;
+        /* Slightly reduced input padding */
+    }
+
+    .btn-professional {
+        padding: 0.7rem 1.5rem;
+        /* Reduced button padding */
+    }
+}

@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const firstFocusable = focusableElements[0];
         const lastFocusable = focusableElements[focusableElements.length - 1];
 
-        element.addEventListener('keydown', function(e) {
+        element.addEventListener('keydown', function (e) {
             if (e.key === 'Tab') {
                 if (e.shiftKey) { // Shift + Tab
                     if (document.activeElement === firstFocusable) {
@@ -33,12 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
             isMenuOpen = open;
             navLinks.classList.toggle('active', open);
             menuToggle.setAttribute('aria-expanded', open);
-            
+
             const icon = menuToggle.querySelector('i');
             if (open) {
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-xmark');
-                body.style.overflow = 'hidden'; 
+                body.style.overflow = 'hidden';
                 // Wait for transition then focus
                 setTimeout(() => {
                     const firstLink = navLinks.querySelector('a');
@@ -99,24 +99,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // FAQ Accordion (Single Open)
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(item => {
-        const button = item.querySelector('.faq-button');
+    const faqCards = document.querySelectorAll('.faq-card');
+    faqCards.forEach(card => {
+        const button = card.querySelector('.faq-button');
+        if (!button) return;
+
         button.addEventListener('click', () => {
             const isExpanded = button.getAttribute('aria-expanded') === 'true';
-            
+
             // Close all
-            faqItems.forEach(otherItem => {
-                const otherBtn = otherItem.querySelector('.faq-button');
-                const otherAnswer = otherItem.querySelector('.faq-answer');
-                otherBtn.setAttribute('aria-expanded', 'false');
-                otherAnswer.style.maxHeight = null;
+            faqCards.forEach(otherCard => {
+                const otherBtn = otherCard.querySelector('.faq-button');
+                const otherAnswer = otherCard.querySelector('.faq-answer');
+                if (otherBtn && otherAnswer) {
+                    otherBtn.setAttribute('aria-expanded', 'false');
+                    otherCard.setAttribute('data-expanded', 'false');
+                    otherAnswer.style.maxHeight = null;
+                }
             });
 
             // Toggle current if it wasn't already open
             if (!isExpanded) {
                 button.setAttribute('aria-expanded', 'true');
-                const answer = item.querySelector('.faq-answer');
+                card.setAttribute('data-expanded', 'true');
+                const answer = card.querySelector('.faq-answer');
                 answer.style.maxHeight = answer.scrollHeight + "px";
             }
         });
@@ -131,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    observer.unobserve(entry.target); 
+                    observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
@@ -149,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            
+
             // Add native validation check
             if (!contactForm.checkValidity()) {
                 e.preventDefault();
@@ -160,26 +166,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
-            
+
+            // Simulation of sending
             // Simulation of sending
             const btn = contactForm.querySelector('button[type="submit"]');
-            const originalText = btn.innerText;
-            btn.innerText = 'Sending...';
+            const btnText = btn.querySelector('.btn-text');
+            const originalText = btnText ? btnText.innerText : 'Send Message';
+
+            if (btnText) btnText.innerText = 'Sending...';
             btn.disabled = true;
 
             setTimeout(() => {
                 feedback.className = 'feedback-msg success';
                 feedback.innerHTML = `<i class="fa-solid fa-check"></i> Thanks ${name}! We'll be in touch at ${email} shortly.`;
                 contactForm.reset();
-                btn.innerText = originalText;
+                if (btnText) btnText.innerText = originalText;
                 btn.disabled = false;
-                
+
                 // Remove message after 5 seconds
                 setTimeout(() => {
                     feedback.style.display = 'none';
-                    feedback.className = 'feedback-msg'; 
+                    feedback.className = 'feedback-msg';
                 }, 5000);
             }, 1000);
+        });
+    }
+
+    // Back to Top Logic
+    const backTopBtn = document.getElementById('back-to-top');
+    if (backTopBtn) {
+        backTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     }
 });
