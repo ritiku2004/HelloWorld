@@ -72,6 +72,30 @@ html {
     /* Fix for navbar overlap */
 }
 
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    /* Thinner width */
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+    border-radius: 99px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    /* Thinner border */
+    background-clip: padding-box;
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--color-primary-active), var(--color-secondary));
+    border: 1px solid white;
+}
+
 body {
     font-family: var(--font-sans);
     color: var(--color-text-body);
@@ -126,6 +150,47 @@ h2 {
     font-size: var(--text-3xl);
     letter-spacing: -0.01em;
     margin-bottom: var(--space-4);
+    display: inline-block;
+    /* White shimmer effect on dark text */
+    background: linear-gradient(90deg,
+            var(--color-text-heading) 0%,
+            var(--color-text-heading) 45%,
+            #94a3b8 50%,
+            var(--color-text-heading) 55%,
+            var(--color-text-heading) 100%);
+    background-size: 200% auto;
+    /* Reset to 200% as 1000% might break on some browsers, but adjust logic */
+    /* actually, user wants "time" fix. Overlap happens if gradient repeats. 
+       Let's use no-repeat and keyframes that move it through. 
+       But gradient text needs to be cover or sized. 
+       Let's stick to the 500% plan but formatted correctly this time. 
+    */
+    background: linear-gradient(90deg,
+            var(--color-text-heading) 0%,
+            var(--color-text-heading) 48%,
+            #94a3b8 50%,
+            var(--color-text-heading) 52%,
+            var(--color-text-heading) 100%);
+    background-size: 500% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: text-shimmer 8s linear infinite;
+}
+
+h2 span {
+    /* Blue base with white shimmer */
+    background: linear-gradient(90deg,
+            var(--color-primary) 0%,
+            var(--color-primary) 48%,
+            #ffffff 50%,
+            var(--color-primary) 52%,
+            var(--color-primary) 100%);
+    background-size: 500% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: text-shimmer 8s linear infinite;
 }
 
 h3 {
@@ -248,36 +313,99 @@ ul {
     background: var(--color-primary);
     color: white;
     box-shadow: 0 10px 20px -10px var(--color-primary);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: white;
+    z-index: -1;
+    transition: width 0.4s var(--ease-smooth);
 }
 
 .btn-primary:hover {
-    background: var(--color-primary-active);
+    color: var(--color-primary);
+    border-color: white;
+    /* Added as requested */
     transform: translateY(-2px);
     box-shadow: 0 15px 25px -10px var(--color-primary);
+    /* Removed background change */
+}
+
+.btn-primary:hover::before {
+    width: 100%;
 }
 
 .btn-glass {
     background: rgba(255, 255, 255, 0.4);
     color: var(--color-primary);
     border-color: rgba(255, 255, 255, 0.8);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-glass::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: white;
+    z-index: -1;
+    transition: width 0.4s var(--ease-smooth);
 }
 
 .btn-glass:hover {
-    background: white;
+    background: transparent;
+    color: var(--color-primary);
+    /* Ensure text stays primary color */
+}
+
+.btn-glass:hover::before {
+    width: 100%;
 }
 
 .btn-glass-dark {
     background: rgba(255, 255, 255, 0.1);
     color: var(--color-text-heading);
     border: 1px solid var(--color-text-muted);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-glass-dark::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    /* Ensure this is explicitly blue/primary color */
+    background: var(--color-primary);
+    z-index: -1;
+    transition: width 0.4s var(--ease-smooth);
 }
 
 .btn-glass-dark:hover {
-    background: var(--color-primary);
     color: white;
     border-color: var(--color-primary);
     box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
     transform: translateY(-2px);
+    background: transparent;
+}
+
+.btn-glass-dark:hover::before {
+    width: 100%;
 }
 
 /* Navigation */
@@ -320,6 +448,14 @@ ul {
     gap: 0.5rem;
     color: var(--color-text-heading);
     z-index: 1001;
+}
+
+.logo img {
+    height: 3.2rem;
+    width: auto;
+    object-fit: contain;
+    /* Stronger white glow + shadow for maximum visibility */
+    filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 3px rgba(255, 255, 255, 0.7)) drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
 }
 
 /* Centered Navigation Links */
@@ -400,7 +536,11 @@ ul {
         align-items: center;
         gap: var(--space-8);
         transform: translateX(100%);
-        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+        /* Add visibility transition */
+        visibility: hidden;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s 0.4s;
+
         /* Silk smooth, no elastic bounce */
         font-size: 1.25rem;
         margin: 0;
@@ -414,6 +554,8 @@ ul {
 
     .nav-links.active {
         transform: translateX(0);
+        visibility: visible;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s;
     }
 }
 
@@ -445,11 +587,29 @@ ul {
     margin-bottom: var(--space-4);
 }
 
+@keyframes text-shimmer {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
 .hero h1 span {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    /* Pink-Blue gradient flow with subtle white shine */
+    background: linear-gradient(90deg,
+            var(--color-primary) 0%,
+            var(--color-secondary) 48%,
+            #ffffff 50%,
+            var(--color-secondary) 52%,
+            var(--color-primary) 100%);
+    background-size: 500% auto;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: text-shimmer 8s linear infinite;
 }
 
 /* Features/Services */
@@ -494,6 +654,10 @@ ul {
 
 .about-img {
     width: 100%;
+    height: auto;
+    /* Fix aspect ratio */
+    object-fit: cover;
+    /* Ensure image covers area if constraints exist */
     border-radius: var(--radius-xl);
     box-shadow: var(--glass-shadow-lg);
     transition: transform 0.3s ease;
@@ -675,12 +839,20 @@ ul {
     .glass-card {
         padding: 1.5rem;
         /* Tighter padding */
-        /* Optimization: Reduce blur for mobile smoothness */
+    }
+
+    .logo img {
+        height: 2.5rem;
+        /* Smaller size for mobile responsiveness */
+    }
+
+
+    /* Optimization: Reduce blur for mobile smoothness */
+    .glass-card,
+    .nav-links {
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
     }
-
-    /* Smaller padding in cards on mobile */
 }
 
 /* --- Prism Glass Footer (Full Width) --- */
@@ -1271,4 +1443,355 @@ ul {
     position: relative;
     z-index: 10;
     /* Ensure interactivity above canvas */
+}
+
+/* --- Intro Overlay (God Level: Windy Cinema Fabric) --- */
+#intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto;
+    transition: visibility 2s;
+    perspective: 2000px;
+    /* Deep 3D space for fabric movement */
+    overflow: hidden;
+}
+
+/* The Background Curtains */
+.intro-curtain {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 51%;
+    /* Slight overlap to prevent gaps */
+
+    /* Modern Premium Texture: Subtle Dot Matrix over Gradient */
+    background-image:
+        radial-gradient(#a5b4fc 1px, transparent 1px),
+        linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 50%, #e0e7ff 100%);
+    background-size: 20px 20px, 200% 200%;
+    /* Texture size, Gradient size */
+    background-position: 0 0, 0 0;
+
+    animation: gradient-flow 10s ease infinite;
+
+    z-index: 1;
+    /* Slow, majestic opening (3s) */
+    transition: transform 3s cubic-bezier(0.25, 1, 0.5, 1), opacity 2s ease;
+    will-change: transform;
+
+    box-shadow: none;
+}
+
+.intro-curtain.left {
+    left: 0;
+    transform-origin: top left;
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+    /* Subtle seam overlap */
+}
+
+.intro-curtain.right {
+    right: 0;
+    transform-origin: top right;
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Hidden State: The "Slow Cinema Open" Effect */
+#intro-overlay.hidden {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+#intro-overlay.hidden .intro-curtain.left {
+    /* Slide open smoothly */
+    transform: translateX(-100%);
+}
+
+#intro-overlay.hidden .intro-curtain.right {
+    /* Slide open smoothly */
+    transform: translateX(100%);
+}
+
+/* Remove content instantly to focus on curtains */
+#intro-overlay.hidden .intro-content {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.5s ease;
+}
+
+/* Content Layer */
+.intro-content {
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    /* Above curtains */
+    transition: opacity 0.5s ease, transform 0.8s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+}
+
+.intro-title {
+    line-height: 1.1;
+    margin-bottom: 0;
+}
+
+/* Typography Styling */
+.intro-title span {
+    display: block;
+}
+
+/* "Welcome to" - Elegant Serif */
+.intro-title span:first-child {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: #4b5563;
+    /* Muted elegant dark gray */
+    letter-spacing: 0.05em;
+}
+
+/* "Hello World" - Bold Modern Sans with Vivid Gradient */
+.intro-title .highlight {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3rem, 8vw, 6rem);
+    /* More Vibrant Gradient */
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.03em;
+    filter: drop-shadow(0 10px 20px rgba(139, 92, 246, 0.3));
+    /* Glow */
+}
+
+/* Decorative Line */
+.intro-divider {
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
+    animation: divider-expand 1.5s ease-out forwards 0.8s;
+    margin: 0 auto;
+    border-radius: 99px;
+}
+
+@keyframes divider-expand {
+    to {
+        width: 120px;
+    }
+}
+
+.intro-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    /* CINEMATIC SPACING */
+    text-transform: uppercase;
+    margin-bottom: var(--space-4);
+}
+
+/* Glossy Reveal Animation */
+.text-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: text-slide-up 1s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+}
+
+.delay-1 {
+    animation-delay: 0.2s;
+}
+
+.delay-2 {
+    animation-delay: 0.5s;
+}
+
+.delay-3 {
+    animation-delay: 1s;
+}
+
+@keyframes text-slide-up {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- MAGNETIC BUTTON (God Level Interactive) --- */
+.btn-intro {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    color: white;
+    padding: 1.25rem 3.5rem;
+    border-radius: 99px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+
+    /* Deep Shadow */
+    box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 20px 25px -5px rgba(79, 70, 229, 0.4),
+        inset 0 2px 2px rgba(255, 255, 255, 0.3);
+
+    transition: box-shadow 0.3s ease;
+    /* Only animate shadow on hover/click */
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    position: relative;
+    overflow: hidden;
+
+    /* Continuous Attraction Animation */
+    animation:
+        fade-up 1.2s ease-out 1.5s backwards,
+        pulse-attract 3s infinite ease-in-out;
+
+    letter-spacing: 0.02em;
+}
+
+/* Inner Liquid Shine - Continuous Flow */
+.btn-intro::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    transform: skewX(-20deg) translateX(-150%);
+
+    /* Auto-animate the shine */
+    animation: shine-flow 4s infinite linear;
+    animation-delay: 1s;
+}
+
+/* No physical movement on hover, just subtle shadow deepening */
+.btn-intro:hover {
+    box-shadow:
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 25px 50px -12px rgba(124, 58, 237, 0.7),
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.btn-intro:active {
+    transform: scale(0.98);
+    /* Subtle click feedback only */
+    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.4);
+}
+
+/* Animations */
+@keyframes pulse-attract {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.7);
+    }
+
+    50% {
+        transform: scale(1.03);
+        box-shadow: 0 0 20px 10px rgba(124, 58, 237, 0);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(124, 58, 237, 0);
+    }
+}
+
+@keyframes shine-flow {
+    0% {
+        transform: skewX(-20deg) translateX(-150%);
+    }
+
+    20% {
+        transform: skewX(-20deg) translateX(150%);
+    }
+
+    /* Pass through quickly */
+    100% {
+        transform: skewX(-20deg) translateX(150%);
+    }
+
+    /* Wait */
+}
+
+.btn-intro i {
+    transition: transform 0.3s ease;
+}
+
+.btn-intro:hover i {
+    transform: translateX(4px);
+}
+
+/* --- Custom Context Toast --- */
+.context-toast {
+    position: fixed;
+    z-index: 10000;
+    pointer-events: none;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    /* Glassmorphism */
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.5);
+    padding: 1rem 1.5rem;
+}
+
+.context-toast.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+.toast-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.toast-message {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--color-text-body);
+    margin-bottom: 0.2rem;
+    font-weight: 500;
+}
+
+.toast-link {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-decoration: none;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.2s;
+    border-bottom: 1px dashed var(--color-primary);
+}
+
+.toast-link:hover {
+    border-bottom-style: solid;
+    transform: translateY(-1px);
+}
+
+.btn-intro::before {
+    display: none;
+    /* Remove the shine effect from dark mode */
 }

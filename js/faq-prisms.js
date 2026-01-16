@@ -65,15 +65,22 @@ document.addEventListener('DOMContentLoaded', () => {
             const px = this.x + width / 2;
             const py = this.y + height / 2;
 
-            // SMOOTH ALPHA CURVE
+            // SMOOTH ALPHA CURVE - Updated for softer entry/exit
             let alpha = 0;
+            // Fade in from deep (2000 down to 1500)
             if (this.z > 1500) {
                 alpha = (config.depth - this.z) / 500;
-            } else if (this.z > 600) {
-                alpha = 1;
-            } else {
-                alpha = (this.z - 200) / 400;
             }
+            // Stay fully visible (but slightly lower max opacity)
+            else if (this.z > 500) {
+                alpha = 0.8; // Reduced from 1 for softer look
+            }
+            // Smooth fade out (500 down to 100)
+            else {
+                alpha = Math.max(0, (this.z - 100) / 400);
+            }
+            // Apply slight eases
+            alpha = alpha * alpha * (3 - 2 * alpha); // Smoothstep curve
 
             if (alpha <= 0) return;
 

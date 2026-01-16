@@ -9,16 +9,44 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/professional-form.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 
 <body>
 
+    <!-- Intro Overlay -->
+    <div id="intro-overlay">
+        <div class="intro-curtain left"></div>
+        <div class="intro-curtain right"></div>
+        <div class="intro-content">
+            <h1 class="intro-title">
+                <span class="text-reveal delay-1">Welcome to</span>
+                <br>
+                <span class="text-reveal highlight delay-2">Hello World</span>
+            </h1>
+            <div class="intro-divider"></div>
+            <p class="intro-subtitle text-reveal delay-3">Experience the Future of Digital Design</p>
+            <button id="enter-site-btn" class="btn-intro">
+                <span>Enter Experience</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Background Audio -->
+    <audio id="bg-music" loop>
+        <source src="images/mixkit-relax-beat-292.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <!-- Header -->
     <nav class="navbar" role="navigation" aria-label="Main Navigation">
         <div class="container nav-content">
             <a href="#" class="logo" aria-label="Hello Word Home">
-                <i class="fa-solid fa-cube" style="color: var(--color-primary);"></i> Hello Word
+                <img src="images/Logo.png" alt="Hello Word Logo">
             </a>
 
             <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle Navigation Menu" aria-expanded="false"
@@ -133,44 +161,43 @@
                     </div>
                     <div class="grid-3">
                         <div class="glass-card fade-up">
-                            <p>"The glassmorphic design they implemented completely revitalized our brand image. Our
-                                bounce
-                                rate dropped by 40%!"</p>
+                            <p>"They didn't just build a website; they architected a digital empire for us. Our traffic
+                                exploded by 300% in the first week. Absolutely visionary work!"</p>
                             <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;">
                                 <div
                                     style="width: 40px; height: 40px; background: #ddd; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">
-                                    SJ</div>
+                                    AP</div>
                                 <div>
-                                    <h4 style="font-size: 0.95rem; margin-bottom: 0;">Sarah Jenkins</h4>
-                                    <small style="color: var(--color-text-muted);">CTO, FinTech Co.</small>
+                                    <h4 style="font-size: 0.95rem; margin-bottom: 0;">Aarav Patel</h4>
+                                    <small style="color: var(--color-text-muted);">CEO, NextGen Solutions</small>
                                 </div>
                             </div>
                         </div>
 
                         <div class="glass-card fade-up" style="transition-delay: 0.1s;">
-                            <p>"Incredible attention to detail. The animations are smooth and the mobile experience is
-                                flawless."</p>
+                            <p>"I've worked with global agencies, but the precision and artistry here are unmatched.
+                                They transformed our chaotic vision into a seamless, award-winning interface."</p>
                             <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;">
                                 <div
                                     style="width: 40px; height: 40px; background: #ddd; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">
-                                    MR</div>
+                                    PS</div>
                                 <div>
-                                    <h4 style="font-size: 0.95rem; margin-bottom: 0;">Mark Roberts</h4>
-                                    <small style="color: var(--color-text-muted);">Founder, StartUp Inc.</small>
+                                    <h4 style="font-size: 0.95rem; margin-bottom: 0;">Priya Sharma</h4>
+                                    <small style="color: var(--color-text-muted);">Founder, Zenith AI</small>
                                 </div>
                             </div>
                         </div>
 
                         <div class="glass-card fade-up" style="transition-delay: 0.2s;">
-                            <p>"Professional, timely, and creative. They took our vague ideas and turned them into a
-                                digital masterpiece."</p>
+                            <p>"Pure magic! They delivered a platform so robust and beautiful, our competitors are
+                                asking who hit us. Professional, lightning-fast, and innovative."</p>
                             <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;">
                                 <div
                                     style="width: 40px; height: 40px; background: #ddd; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">
-                                    AL</div>
+                                    LB</div>
                                 <div>
-                                    <h4 style="font-size: 0.95rem; margin-bottom: 0;">Alex Lee</h4>
-                                    <small style="color: var(--color-text-muted);">Marketing Dir, TechFlow</small>
+                                    <h4 style="font-size: 0.95rem; margin-bottom: 0;">Liam Bennett</h4>
+                                    <small style="color: var(--color-text-muted);">Director, Global Ventures</small>
                                 </div>
                             </div>
                         </div>
@@ -191,56 +218,45 @@
                         <!-- FAQ Item 1 -->
                         <div class="faq-card" data-expanded="false">
                             <button class="faq-button" aria-expanded="false">
-                                <span>How long does the design process take?</span>
+                                <span>How long does it take to build a website?</span>
                                 <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
                             </button>
                             <div class="faq-answer">
-                                <p>Typically 2-4 weeks from design to launch, depending on complexity. We provide a
-                                    detailed timeline during the initial kickoff meeting.</p>
+                                <p>Most websites are completed within three to seven working days, depending on
+                                    features, content availability, and customization requirements.</p>
                             </div>
                         </div>
                         <!-- FAQ Item 2 -->
                         <div class="faq-card" data-expanded="false">
                             <button class="faq-button" aria-expanded="false">
-                                <span>Do you provide hosting and maintenance?</span>
+                                <span>Why are your prices lower than others?</span>
                                 <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
                             </button>
                             <div class="faq-answer">
-                                <p>Yes, we offer fully managed hosting solutions with 99.9% uptime, SSL certification,
-                                    and daily backups to keep your site secure.</p>
-                            </div>
-                        </div>
-                        <!-- FAQ Item 3 -->
-                        <div class="faq-card" data-expanded="false">
-                            <button class="faq-button" aria-expanded="false">
-                                <span>Will my website be mobile-friendly?</span>
-                                <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
-                            </button>
-                            <div class="faq-answer">
-                                <p>Absolutely! Mobile responsiveness is our priority. Your site will look perfect and
-                                    function flawlessly on phones, tablets, and desktops.</p>
+                                <p>We are a growing startup, so we focus on affordability, efficiency, and long-term
+                                    client relationships instead of high margins.</p>
                             </div>
                         </div>
                         <!-- FAQ Item 4 -->
                         <div class="faq-card" data-expanded="false">
                             <button class="faq-button" aria-expanded="false">
-                                <span>Do you include SEO optimization?</span>
+                                <span>Do you provide hosting and maintenance services?</span>
                                 <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
                             </button>
                             <div class="faq-answer">
-                                <p>Yes, all our websites are built with SEO best practices in mind, including proper
-                                    structure, meta tags, and fast loading speeds to help you rank better.</p>
+                                <p>Yes, we provide hosting, domain support, regular updates, security checks, and
+                                    ongoing maintenance to keep your website running smoothly.</p>
                             </div>
                         </div>
                         <!-- FAQ Item 5 -->
                         <div class="faq-card" data-expanded="false">
                             <button class="faq-button" aria-expanded="false">
-                                <span>Can I update the content myself?</span>
+                                <span>How can I contact you?</span>
                                 <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
                             </button>
                             <div class="faq-answer">
-                                <p>We can integrate a user-friendly Content Management System (CMS) that allows you to
-                                    easily update text and images without touching any code.</p>
+                                <p>You can contact us through our website form, email, or WhatsApp, and we usually
+                                    respond within a few hours.</p>
                             </div>
                         </div>
                     </div>
@@ -268,8 +284,8 @@
                                 </div>
                                 <div>
                                     <h4 style="font-size: 1rem; margin-bottom: 0;">Email Us</h4>
-                                    <a href="mailto:hello@helloword.com"
-                                        style="color: var(--color-text-muted);">hello@helloword.com</a>
+                                    <a href="mailto:helloworld150603@gmail.com"
+                                        style="color: var(--color-text-muted);">helloworld150603@gmail.com</a>
                                 </div>
                             </div>
                             <div style="display: flex; gap: 1rem; align-items: center;">
@@ -279,8 +295,8 @@
                                 </div>
                                 <div>
                                     <h4 style="font-size: 1rem; margin-bottom: 0;">Call Us</h4>
-                                    <a href="tel:+15559876543" style="color: var(--color-text-muted);">+1 (555)
-                                        987-6543</a>
+                                    <a href="tel:+15559876543" style="color: var(--color-text-muted);">+(91)
+                                        8109516066</a>
                                 </div>
                             </div>
                         </div>
@@ -301,9 +317,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="message" class="professional-label">Project Details</label>
+                                <label for="message" class="professional-label">Your Message</label>
                                 <textarea id="message" name="message" class="professional-input" rows="5"
-                                    style="resize: vertical;" required placeholder="Tell us about your project..."
+                                    style="resize: vertical;" required placeholder="Tell us about your idea..."
                                     minlength="10"></textarea>
                             </div>
 
@@ -326,7 +342,7 @@
             <div class="footer-top">
                 <div class="footer-brand">
                     <a href="#" class="logo footer-logo">
-                        <i class="fa-solid fa-cube gradient-icon"></i> Hello Word
+                        <img src="images/Logo.png" alt="Hello Word Logo">
                     </a>
                     <p class="footer-bio">Crafting digital experiences that merge art with technology. We build the
                         future of the web, one pixel at a time.</p>
@@ -359,8 +375,9 @@
                     <div class="social-links">
                         <a href="#" aria-label="Instagram" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
                         <a href="#" aria-label="LinkedIn" class="social-btn"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="#" aria-label="WhatsApp" class="social-btn"><i class="fa-brands fa-whatsapp"></i></a>
-                        <a href="mailto:hello@helloword.com" aria-label="Email" class="social-btn"><i
+                        <a href="https://wa.me/918109516066" aria-label="WhatsApp" class="social-btn"><i
+                                class="fa-brands fa-whatsapp"></i></a>
+                        <a href="mailto:helloworld150603@gmail.com" aria-label="Email" class="social-btn"><i
                                 class="fa-solid fa-envelope"></i></a>
                     </div>
                 </div>
@@ -378,6 +395,18 @@
         </div>
     </footer>
 
+    <!-- Custom Right Click Toast -->
+    <div id="context-toast" class="context-toast">
+        <div class="toast-content">
+            <i class="fa-solid fa-face-smile-wink gradient-icon" style="font-size: 1.5rem;"></i>
+            <div>
+                <span class="toast-message">Thinking of stealing pixels?</span>
+                <a href="#contact" class="toast-link">You want to contact me instead!</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script src="js/script.js"></script>
     <script src="js/waves.js"></script>
     <script src="js/antigravity.js"></script>

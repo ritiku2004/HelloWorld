@@ -1,8 +1,36 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Intro Overlay Logic
+    const introOverlay = document.getElementById('intro-overlay');
+    const enterBtn = document.getElementById('enter-site-btn');
+    const bgMusic = document.getElementById('bg-music');
+    const body = document.body;
+
+    if (introOverlay && enterBtn) {
+        // Lock scroll initially
+        body.style.overflow = 'hidden';
+
+        enterBtn.addEventListener('click', () => {
+            // Fade out overlay
+            introOverlay.classList.add('hidden');
+            body.style.overflow = ''; // Unlock scroll
+
+            // Play Music
+            if (bgMusic) {
+                bgMusic.volume = 0.5; // Set reasonable volume
+                bgMusic.play().catch(e => console.log('Audio autoplay prevented:', e));
+            }
+
+            // Remove overlay from DOM after transition (1.5s) to free up resources
+            setTimeout(() => {
+                introOverlay.remove();
+            }, 1600);
+        });
+    }
+
     // Mobile Menu Logic
     const menuToggle = document.getElementById('mobile-menu-btn');
     const navLinks = document.getElementById('mobile-nav');
-    const body = document.body;
+
     let isMenuOpen = false;
 
     // Trap focus inside menu when open
@@ -47,7 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 icon.classList.add('fa-bars');
                 icon.classList.remove('fa-xmark');
-                body.style.overflow = '';
+                // Wait for animation to finish before restoring scroll
+                setTimeout(() => {
+                    if (!isMenuOpen) {
+                        body.style.overflow = '';
+                    }
+                }, 400);
                 menuToggle.focus();
             }
         };
@@ -202,4 +235,51 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-});
+
+    // --- Custom Right Click Toast Logic ---
+    const contextToast = document.getElementById('context-toast');
+    let toastTimeout;
+
+    if (contextToast) {
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault(); // Disable default menu
+
+            // Clear existing timeout
+            clearTimeout(toastTimeout);
+
+            // Position toast at mouse coordinates
+            let x = e.clientX;
+            let y = e.clientY;
+
+            // Simple overflow check (assuming approx toast size)
+            // If near right edge, shift left
+            if (x + 300 > window.innerWidth) {
+                x = window.innerWidth - 320;
+            }
+            // If near bottom, shift up
+            if (y + 100 > window.innerHeight) {
+                y = window.innerHeight - 120;
+            }
+
+            contextToast.style.left = `${x}px`;
+            contextToast.style.top = `${y}px`;
+            contextToast.classList.add('active');
+
+            // Auto hide after 3.5 seconds
+            toastTimeout = setTimeout(() => {
+                contextToast.classList.remove('active');
+            }, 3500);
+        });
+
+        // Hide on any regular click
+        document.addEventListener('click', () => {
+            contextToast.classList.remove('active');
+        });
+
+        // Hide on scroll
+        window.addEventListener('scroll', () => {
+            contextToast.classList.remove('active');
+        }, { passive: true });
+    }
+
+}); // End DOMContentLoaded
