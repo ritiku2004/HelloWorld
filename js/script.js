@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
         body.style.overflow = 'hidden';
 
         enterBtn.addEventListener('click', () => {
+            // Scroll to top instantly
+            window.scrollTo({ top: 0, behavior: 'instant' });
+
             // Fade out overlay
             introOverlay.classList.add('hidden');
             body.style.overflow = ''; // Unlock scroll
@@ -280,6 +283,53 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('scroll', () => {
             contextToast.classList.remove('active');
         }, { passive: true });
+    }
+
+    // --- Projects Showcase Filter Logic ---
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    if (filterButtons.length && projectCards.length) {
+        const filterProjects = (filterValue) => {
+            projectCards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+
+                if (filterValue === 'all' || cardCategory === filterValue) {
+                    card.style.display = 'flex';
+                    card.classList.remove('fade-out');
+                    card.classList.add('fade-in');
+                } else {
+                    card.classList.remove('fade-in');
+                    card.classList.add('fade-out');
+                    setTimeout(() => {
+                        if (card.classList.contains('fade-out')) {
+                            card.style.display = 'none';
+                        }
+                    }, 300);
+                }
+            });
+        };
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const filterValue = button.getAttribute('data-filter');
+                filterProjects(filterValue);
+            });
+        });
+
+        // Initialize active filter on page load
+        const activeBtn = document.querySelector('.filter-btn.active');
+        if (activeBtn) {
+            const initialFilter = activeBtn.getAttribute('data-filter');
+            if (initialFilter !== 'all') {
+                filterProjects(initialFilter);
+            }
+        }
     }
 
 }); // End DOMContentLoaded

@@ -1,4 +1,4 @@
-# Hello Word - Premium Glassmorphic Website
+# WFM - Premium Glassmorphic Website
 
 This project is a modern, responsive, and accessible landing page for a digital agency. It features a glassmorphic design aesthetic, fluid typography, and optimized performance.
 

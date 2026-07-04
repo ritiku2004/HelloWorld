@@ -451,7 +451,7 @@ ul {
 }
 
 .logo img {
-    height: 3.2rem;
+    height: 2.2rem;
     width: auto;
     object-fit: contain;
     /* Stronger white glow + shadow for maximum visibility */
@@ -842,7 +842,7 @@ ul {
     }
 
     .logo img {
-        height: 2.5rem;
+        height: 1.4rem;
         /* Smaller size for mobile responsiveness */
     }
 
@@ -1559,7 +1559,7 @@ ul {
     letter-spacing: 0.05em;
 }
 
-/* "Hello World" - Bold Modern Sans with Vivid Gradient */
+/* "WFM" - Bold Modern Sans with Vivid Gradient */
 .intro-title .highlight {
     font-family: 'Inter', sans-serif;
     font-weight: 800;
@@ -1572,6 +1572,15 @@ ul {
     letter-spacing: -0.03em;
     filter: drop-shadow(0 10px 20px rgba(139, 92, 246, 0.3));
     /* Glow */
+}
+
+.intro-logo {
+    max-height: clamp(2.5rem, 7vw, 5rem);
+    width: auto;
+    object-fit: contain;
+    margin-top: 2rem;
+    filter: drop-shadow(0 10px 20px rgba(139, 92, 246, 0.3));
+    display: inline-block;
 }
 
 /* Decorative Line */
@@ -1794,4 +1803,225 @@ ul {
 .btn-intro::before {
     display: none;
     /* Remove the shine effect from dark mode */
+}
+
+/* --- Portfolio Projects Section --- */
+.portfolio-filters {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 0.6rem 1.4rem;
+    border-radius: 99px;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: var(--text-sm);
+    color: var(--color-text-body);
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.3s var(--ease-smooth);
+}
+
+.filter-btn:hover {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(255, 255, 255, 0.7);
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-8);
+}
+
+.project-card {
+    background: var(--gradient-glass);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--glass-shadow-md);
+    transition: transform 0.4s var(--ease-elastic), box-shadow 0.4s var(--ease-smooth), border 0.4s var(--ease-smooth);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    opacity: 1;
+}
+
+.project-card.fade-out {
+    animation: fadeOut 0.3s ease forwards;
+}
+
+.project-card.fade-in {
+    animation: fadeIn 0.4s ease forwards;
+}
+
+.project-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--glass-shadow-hover);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+.project-mockup {
+    height: 210px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    transition: all 0.4s var(--ease-smooth);
+}
+
+.project-card:hover .project-mockup {
+    filter: saturate(1.05) brightness(1.02);
+}
+
+/* Browser/App Dot Indicator Mockup */
+.project-mockup::before {
+    content: '';
+    position: absolute;
+    top: 14px;
+    left: 18px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 12px 0 0 rgba(255, 255, 255, 0.4), 24px 0 0 rgba(255, 255, 255, 0.4);
+}
+
+.project-mockup i {
+    font-size: 4.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transition: transform 0.4s var(--ease-elastic);
+    z-index: 2;
+}
+
+.project-card:hover .project-mockup i {
+    transform: scale(1.18) rotate(3deg);
+}
+
+/* Background Mockup Geometric Elements */
+.project-mockup::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    right: -30px;
+    width: 140px;
+    height: 140px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-xl);
+    transform: rotate(45deg);
+    transition: transform 0.4s var(--ease-smooth);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.project-card:hover .project-mockup::after {
+    transform: rotate(55deg) scale(1.1);
+}
+
+.project-info {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.project-info h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    color: var(--color-text-heading);
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.project-info p {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.project-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+    background: rgba(99, 102, 241, 0.08);
+    color: var(--color-primary);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.project-card:nth-child(even) .project-tag {
+    background: rgba(236, 72, 153, 0.08);
+    color: var(--color-secondary);
+}
+
+.project-card:nth-child(3n) .project-tag {
+    background: rgba(45, 212, 191, 0.08);
+    color: var(--color-accent);
+}
+
+.project-footer-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: all 0.2s;
+    margin-top: auto;
+}
+
+.project-footer-link:hover {
+    gap: 0.75rem;
+    color: var(--color-primary-active);
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
