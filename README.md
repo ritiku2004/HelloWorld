@@ -4,7 +4,7 @@ This project is a modern, responsive, and accessible landing page for a digital 
 
 ## 📁 Project Structure
 
-- `index.html` - Semantic HTML5 markup.
+- `index.html` - Semantic HTML5 markup. 
 - `css/style.css` - Custom CSS properties, glassmorphism utilities, and responsive styles.
 - `js/script.js` - Lightweight logic for mobile menu, animations, and form validation.
 
