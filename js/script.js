@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Intro Overlay Logic
     const introOverlay = document.getElementById('intro-overlay');
     const enterBtn = document.getElementById('enter-site-btn');
-    const bgMusic = document.getElementById('bg-music');
+    const bgMusic = document.getElementById('bg-music'); 
     const body = document.body;
 
     if (introOverlay && enterBtn) {
