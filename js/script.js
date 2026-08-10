@@ -216,31 +216,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Send POST request
             const formData = new FormData(contactForm);
-            fetch('send_email.php', {
+            const jsonData = Object.fromEntries(formData.entries());
+
+            // 1. Try Vercel Node.js Serverless Function first
+            fetch('api/send-email', {
                 method: 'POST',
-                body: formData
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonData)
             })
             .then(response => {
-                const contentType = response.headers.get("content-type");
-                if (contentType && contentType.includes("application/json")) {
-                    return response.json().then(data => {
-                        if (!response.ok) {
-                            throw new Error(data.message || 'Server error occurred');
+                // If Vercel API is not found (e.g. on a standard PHP host), fall back to PHP
+                if (response.status === 404) {
+                    throw new Error('VERCEL_API_NOT_FOUND');
+                }
+                return response.json().then(data => {
+                    if (!response.ok) {
+                        throw new Error(data.message || 'Server error occurred');
+                    }
+                    return data;
+                });
+            })
+            .catch(err => {
+                // If Vercel API was not found or failed due to relative path network routing, try PHP script
+                if (err.message === 'VERCEL_API_NOT_FOUND' || err instanceof TypeError) {
+                    return fetch('send_email.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(phpResponse => {
+                        const contentType = phpResponse.headers.get("content-type");
+                        if (contentType && contentType.includes("application/json")) {
+                            return phpResponse.json().then(data => {
+                                if (!phpResponse.ok) {
+                                    throw new Error(data.message || 'Server error occurred');
+                                }
+                                return data;
+                            });
+                        } else {
+                            // PHP was not executed or served as text (local server fallback)
+                            return phpResponse.text().then(text => {
+                                if (text.trim().startsWith("<?php") || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:') {
+                                    return {
+                                        status: 'success',
+                                        message: 'Thank you! Your message has been sent successfully.'
+                                    };
+                                }
+                                throw new Error('PHP execution is not supported or enabled on this server.');
+                            });
                         }
-                        return data;
-                    });
-                } else {
-                    // Response is not JSON (PHP script was served as plain text / was not executed by the local server)
-                    return response.text().then(text => {
-                        if (text.trim().startsWith("<?php") || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:') {
-                            return {
-                                status: 'success',
-                                message: 'Thank you! Your message has been sent successfully.'
-                            };
-                        }
-                        throw new Error('PHP execution is not supported or enabled on this server.');
                     });
                 }
+                throw err;
             })
             .then(data => {
                 feedback.className = 'feedback-msg success';
