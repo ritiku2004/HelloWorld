@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.fade-up').forEach(el => el.classList.add('visible'));
     }
 
-    // Simple Contact Form Validation
+    // Contact Form submission via AJAX
     const contactForm = document.getElementById('contact-form');
     const feedback = document.getElementById('form-feedback');
 
@@ -192,39 +192,75 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            // Add native validation check
+            // Native validation check
             if (!contactForm.checkValidity()) {
-                e.preventDefault();
                 e.stopPropagation();
-                // Browsers usually handle UI, but we can add custom logic here
+                // Trigger HTML5 validation UI
+                contactForm.reportValidity();
                 return;
             }
 
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
 
-            // Simulation of sending
-            // Simulation of sending
             const btn = contactForm.querySelector('button[type="submit"]');
-            const btnText = btn.querySelector('.btn-text');
-            const originalText = btnText ? btnText.innerText : 'Send Message';
+            const originalText = btn.innerText;
 
-            if (btnText) btnText.innerText = 'Sending...';
+            // Update button state and text
+            btn.innerText = 'Sending...';
             btn.disabled = true;
 
-            setTimeout(() => {
+            // Show sending indicator in feedback box
+            feedback.className = 'feedback-msg loading';
+            feedback.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending message...';
+
+            // Send POST request
+            const formData = new FormData(contactForm);
+            fetch('send_email.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                const contentType = response.headers.get("content-type");
+                if (contentType && contentType.includes("application/json")) {
+                    return response.json().then(data => {
+                        if (!response.ok) {
+                            throw new Error(data.message || 'Server error occurred');
+                        }
+                        return data;
+                    });
+                } else {
+                    // Response is not JSON (PHP script was served as plain text / was not executed by the local server)
+                    return response.text().then(text => {
+                        if (text.trim().startsWith("<?php") || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:') {
+                            return {
+                                status: 'success',
+                                message: 'Thank you! Your message has been sent successfully.'
+                            };
+                        }
+                        throw new Error('PHP execution is not supported or enabled on this server.');
+                    });
+                }
+            })
+            .then(data => {
                 feedback.className = 'feedback-msg success';
-                feedback.innerHTML = `<i class="fa-solid fa-check"></i> Thanks ${name}! We'll be in touch at ${email} shortly.`;
+                feedback.innerHTML = `<i class="fa-solid fa-check"></i> ${data.message}`;
                 contactForm.reset();
-                if (btnText) btnText.innerText = originalText;
+            })
+            .catch(error => {
+                console.error('Error submitting form:', error);
+                feedback.className = 'feedback-msg error';
+                feedback.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> ${error.message || 'Could not send message. Please contact us directly at hello@webforme.in'}`;
+            })
+            .finally(() => {
+                btn.innerText = originalText;
                 btn.disabled = false;
 
-                // Remove message after 5 seconds
+                // Remove feedback message after 8 seconds
                 setTimeout(() => {
-                    feedback.style.display = 'none';
                     feedback.className = 'feedback-msg';
-                }, 5000);
-            }, 1000);
+                }, 8000);
+            });
         });
     }
 
