@@ -1,6 +1,10 @@
 {
   "name": "hello-world",
   "version": "1.0.0",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve ."
+  },
   "dependencies": {
     "nodemailer": "^6.9.14"
   }
