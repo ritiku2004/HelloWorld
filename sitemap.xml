@@ -10,13 +10,13 @@
         <priority>1.0</priority>
         <image:image>
             <image:loc>https://webforme.in/img/WFM-logo.png</image:loc>
-            <image:title>WFM Logo</image:title>
-            <image:caption>Web For Me Digital Solutions</image:caption>
+            <image:title>Web For Me (WFM) Logo</image:title>
+            <image:caption>Web For Me (WFM) Digital Solutions</image:caption>
         </image:image>
         <image:image>
             <image:loc>https://webforme.in/images/about-image.png</image:loc>
-            <image:title>About WFM</image:title>
-            <image:caption>Crafting Digital Masterpieces</image:caption>
+            <image:title>About Web For Me (WFM)</image:title>
+            <image:caption>Web For Me (WFM) Crafting Digital Masterpieces</image:caption>
         </image:image>
     </url>
 
